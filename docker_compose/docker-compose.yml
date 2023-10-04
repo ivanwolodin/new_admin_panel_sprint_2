@@ -8,18 +8,27 @@ services:
       - ./app/:/usr/src/app/
     ports:
       - 8000:8000
-    env_file:
-      - ./.env
+    environment:
+      - DEBUG=False
+      - DB_NAME=movies_database
+      - DB_USER=app
+      - DB_PASSWORD=123qwe
+      - DB_PORT=5432
+      - ALLOWED_HOSTS=0.0.0.0
+      - DB_HOST=0.0.0.0
+      - DB_PATH=db.sqlite
     depends_on:
       - db
   db:
     image: postgres:13
+    ports:
+      - 5432:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=app
       - POSTGRES_PASSWORD=123qwe
       - POSTGRES_DB=movies_database
-
+      
 volumes:
   postgres_data:
