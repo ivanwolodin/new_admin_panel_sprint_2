@@ -17,6 +17,9 @@ services:
       - ALLOWED_HOSTS=0.0.0.0
       - DB_HOST=0.0.0.0
       - DB_PATH=db.sqlite
+      - DJANGO_SUPERUSER_PASSWORD=123
+      - DJANGO_SUPERUSER_EMAIL=example@example.com
+      - DJANGO_SUPERUSER_USERNAME=admin
     depends_on:
       - db
   db:

@@ -39,7 +39,7 @@ class Genre(UUIDMixin, TimeStampedMixin):
 
     name = models.CharField(_('name'), max_length=255)
 
-    description = models.TextField(_('description'), blank=True)
+    description = models.TextField(_('description'), null=True, blank=True,)
 
     class Meta:
 
@@ -104,11 +104,12 @@ class FilmWork(UUIDMixin, TimeStampedMixin):
         TV_SHOW = _('tv_show')
 
     title = models.CharField(_('title'), max_length=255)
-    description = models.TextField(_('description'), blank=True)
-    creation_date = models.DateField(_('creation_date'))
+    description = models.TextField(_('description'), null=True, blank=True)
+    creation_date = models.DateField(_('creation_date'), null=True, blank=True)
     rating = models.FloatField(
         _('rating'),
         validators=[validate_interval],
+        null=True,
         blank=True,
     )
     type = models.CharField(
