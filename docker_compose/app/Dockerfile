@@ -7,7 +7,11 @@ ENV PYTHONUNBUFFERED 1
 
 COPY . .
 
-RUN pip install --upgrade pip && pip install -r requirements.txt && apt-get update && apt-get -y install postgresql-client 
-RUN chmod +x /usr/src/app/entrypoint.sh
+RUN pip install --upgrade pip && \ 
+pip install -r requirements.txt && \
+apt-get update && \
+apt-get -y install postgresql-client && \ 
+python manage.py collectstatic --clear --noinput && \
+chmod +x /usr/src/app/entrypoint.sh
 
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
