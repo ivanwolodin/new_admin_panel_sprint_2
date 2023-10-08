@@ -6,10 +6,12 @@ services:
     command: uwsgi --ini uwsgi.ini
     volumes:
       - app/:/usr/src/app/
+    # ports:
+    #   - "8000:8000"
     expose:
       - "8000"
     environment:
-      - DEBUG=False
+      - DEBUG=True
       - DB_NAME=movies_database
       - DB_USER=app
       - DB_PASSWORD=123qwe

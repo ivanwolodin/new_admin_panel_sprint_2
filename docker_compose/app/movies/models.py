@@ -64,6 +64,12 @@ class GenreFilmwork(UUIDMixin):
 
 
 class PersonFilmwork(UUIDMixin):
+
+    class Roles(models.TextChoices):
+        ACTOR = 'actor'
+        DIRECTOR = 'director'
+        WRITER = 'writer'
+
     film_work = models.ForeignKey('Filmwork', on_delete=models.CASCADE)
     person = models.ForeignKey('Person', on_delete=models.CASCADE)
     role = models.TextField(_('role'), null=True)
