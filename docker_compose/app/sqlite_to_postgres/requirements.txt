@@ -1,4 +1,0 @@
-flake8==4.0
-python-dotenv==1.0.0
-psycopg2==2.9.7
-pytest==7.1.3
