@@ -3,25 +3,10 @@ version: '3'
 services:
   web:
     build: ./app
-    command: uwsgi --ini uwsgi.ini
     volumes:
       - app/:/usr/src/app/
-    # ports:
-    #   - "8000:8000"
-    expose:
-      - "8000"
-    environment:
-      - DEBUG=False
-      - DB_NAME=movies_database
-      - DB_USER=app
-      - DB_PASSWORD=123qwe
-      - DB_PORT=5432
-      - ALLOWED_HOSTS=0.0.0.0 127.0.0.1 localhost
-      - DB_HOST=0.0.0.0
-      - DB_PATH=db.sqlite
-      - DJANGO_SUPERUSER_PASSWORD=123
-      - DJANGO_SUPERUSER_EMAIL=example@example.com
-      - DJANGO_SUPERUSER_USERNAME=admin
+    env_file:
+    - webvars_example.env
     depends_on:
       - db
 
@@ -29,10 +14,8 @@ services:
     image: postgres:13
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=app
-      - POSTGRES_PASSWORD=123qwe
-      - POSTGRES_DB=movies_database
+    env_file:
+    - dbvars_example.env
   
   nginx:
     image: nginx:1.19.2
